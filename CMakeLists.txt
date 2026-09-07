@@ -68,8 +68,8 @@ if(EMSCRIPTEN)
     # SDL3 Image Static
     add_library(SDL3_image_Static STATIC IMPORTED)
     set_target_properties(SDL3_image_Static PROPERTIES
-        IMPORTED_LOCATION "C:/libs/sdl3-image-3.4.4-wasm/lib/libSDL3_image.a"
-        INTERFACE_INCLUDE_DIRECTORIES "C:/libs/sdl3-image-3.4.4-wasm/include"
+        IMPORTED_LOCATION "C:/libs/sdl3-image-3.4.6-wasm/lib/libSDL3_image.a"
+        INTERFACE_INCLUDE_DIRECTORIES "C:/libs/sdl3-image-3.4.6-wasm/include"
         # Order is crucial: webpmux before webp, sharpyuv at the end
         INTERFACE_LINK_LIBRARIES "webpmux;webpdemux;webp;sharpyuv"
     )
@@ -108,8 +108,8 @@ elseif(ANDROID)
 
     add_library(SDL3_image SHARED IMPORTED)
     set_target_properties(SDL3_image PROPERTIES
-        IMPORTED_LOCATION "C:/libs/sdl3-image-3.4.4-android/${ANDROID_ABI}/lib/libSDL3_image.so"
-        INTERFACE_INCLUDE_DIRECTORIES "C:/libs/sdl3-image-3.4.4-android/${ANDROID_ABI}/include"
+        IMPORTED_LOCATION "C:/libs/sdl3-image-3.4.6-android/${ANDROID_ABI}/lib/libSDL3_image.so"
+        INTERFACE_INCLUDE_DIRECTORIES "C:/libs/sdl3-image-3.4.6-android/${ANDROID_ABI}/include"
         INTERFACE_LINK_LIBRARIES "webpmux;webpdemux;webp;sharpyuv"
     )
 
@@ -192,8 +192,8 @@ elseif(WIN32)
     # SDL3 Image Static
     add_library(SDL3_image_Static STATIC IMPORTED)
     set_target_properties(SDL3_image_Static PROPERTIES
-        IMPORTED_LOCATION "C:/libs/sdl3-image-3.4.4-mingw/lib/libSDL3_image.a"
-        INTERFACE_INCLUDE_DIRECTORIES "C:/libs/sdl3-image-3.4.4-mingw/include"
+        IMPORTED_LOCATION "C:/libs/sdl3-image-3.4.6-mingw/lib/libSDL3_image.a"
+        INTERFACE_INCLUDE_DIRECTORIES "C:/libs/sdl3-image-3.4.6-mingw/include"
         # Order is crucial: webpmux before webp, sharpyuv at the end
         INTERFACE_LINK_LIBRARIES "webpmux;webpdemux;webp;sharpyuv"
     )
