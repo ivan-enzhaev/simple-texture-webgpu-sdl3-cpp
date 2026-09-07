@@ -12,6 +12,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(PROJECT_SOURCES
     src/main.cpp
     src/texture_utils.h
+    src/webgpu_context.h
+    src/webgpu_context.cpp
 )
 
 # -----------------------------------------------------------------------------

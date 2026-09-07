@@ -16,6 +16,8 @@ struct WebGPUTexture
     uint32_t height;
 };
 
+typedef struct WebGPUTexture WebGPUTexture;
+
 static inline WebGPUTexture createTextureFromSurface(WGPUDevice device, WGPUQueue queue, SDL_Surface *surface)
 {
     WebGPUTexture result = { NULL, NULL, NULL, 0, 0 };
@@ -37,7 +39,7 @@ static inline WebGPUTexture createTextureFromSurface(WGPUDevice device, WGPUQueu
     result.height = (uint32_t)formattedSurface->h;
 
     // 1. Create WebGPU Texture
-    WGPUTextureDescriptor textureDesc = {};
+    WGPUTextureDescriptor textureDesc = { 0 };
     textureDesc.size.width = result.width;
     textureDesc.size.height = result.height;
     textureDesc.size.depthOrArrayLayers = 1;
@@ -55,22 +57,23 @@ static inline WebGPUTexture createTextureFromSurface(WGPUDevice device, WGPUQueu
     }
 
     // 2. Upload Pixel Data using current WebGPU TexelCopy structs
-    WGPUTexelCopyTextureInfo destination = {};
+    WGPUTexelCopyTextureInfo destination = { 0 };
     destination.texture = result.texture;
     destination.mipLevel = 0;
-    destination.origin = (WGPUOrigin3D) { 0, 0, 0 };
+    destination.origin.x = 0;
+    destination.origin.y = 0;
+    destination.origin.z = 0;
     destination.aspect = WGPUTextureAspect_All;
 
-    WGPUTexelCopyBufferLayout dataLayout = {};
+    WGPUTexelCopyBufferLayout dataLayout = { 0 };
     dataLayout.offset = 0;
     dataLayout.bytesPerRow = (uint32_t)formattedSurface->pitch;
     dataLayout.rowsPerImage = result.height;
 
-    WGPUExtent3D writeSize = {
-        .width = result.width,
-        .height = result.height,
-        .depthOrArrayLayers = 1
-    };
+    WGPUExtent3D writeSize = { 0 };
+    writeSize.width = result.width;
+    writeSize.height = result.height;
+    writeSize.depthOrArrayLayers = 1;
 
     wgpuQueueWriteTexture(queue, &destination, formattedSurface->pixels,
         (size_t)formattedSurface->pitch * result.height,
@@ -79,7 +82,7 @@ static inline WebGPUTexture createTextureFromSurface(WGPUDevice device, WGPUQueu
     SDL_DestroySurface(formattedSurface);
 
     // 3. Create Texture View
-    WGPUTextureViewDescriptor viewDesc = {};
+    WGPUTextureViewDescriptor viewDesc = { 0 };
     viewDesc.format = WGPUTextureFormat_RGBA8Unorm;
     viewDesc.dimension = WGPUTextureViewDimension_2D;
     viewDesc.baseMipLevel = 0;
@@ -91,7 +94,7 @@ static inline WebGPUTexture createTextureFromSurface(WGPUDevice device, WGPUQueu
     result.view = wgpuTextureCreateView(result.texture, &viewDesc);
 
     // 4. Create Sampler
-    WGPUSamplerDescriptor samplerDesc = {};
+    WGPUSamplerDescriptor samplerDesc = { 0 };
     samplerDesc.addressModeU = WGPUAddressMode_ClampToEdge;
     samplerDesc.addressModeV = WGPUAddressMode_ClampToEdge;
     samplerDesc.addressModeW = WGPUAddressMode_ClampToEdge;
