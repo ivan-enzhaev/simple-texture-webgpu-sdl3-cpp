@@ -77,8 +77,8 @@ if(EMSCRIPTEN)
     # SDL3 Core Static
     add_library(SDL3_Static STATIC IMPORTED)
     set_target_properties(SDL3_Static PROPERTIES
-        IMPORTED_LOCATION "C:/libs/sdl3-3.4.14-wasm/lib/libSDL3.a"
-        INTERFACE_INCLUDE_DIRECTORIES "C:/libs/sdl3-3.4.14-wasm/include"
+        IMPORTED_LOCATION "C:/libs/sdl3-3.4.16-wasm/lib/libSDL3.a"
+        INTERFACE_INCLUDE_DIRECTORIES "C:/libs/sdl3-3.4.16-wasm/include"
     )
 
     target_link_libraries(app PRIVATE
@@ -102,8 +102,8 @@ if(EMSCRIPTEN)
 elseif(ANDROID)
     add_library(SDL3 SHARED IMPORTED)
     set_target_properties(SDL3 PROPERTIES
-        IMPORTED_LOCATION "C:/libs/sdl3-3.4.14-android/${ANDROID_ABI}/lib/libSDL3.so"
-        INTERFACE_INCLUDE_DIRECTORIES "C:/libs/sdl3-3.4.14-android/${ANDROID_ABI}/include"
+        IMPORTED_LOCATION "C:/libs/sdl3-3.4.16-android/${ANDROID_ABI}/lib/libSDL3.so"
+        INTERFACE_INCLUDE_DIRECTORIES "C:/libs/sdl3-3.4.16-android/${ANDROID_ABI}/include"
     )
 
     add_library(SDL3_image SHARED IMPORTED)
@@ -201,8 +201,8 @@ elseif(WIN32)
     # SDL3 Core Static
     add_library(SDL3_Static STATIC IMPORTED)
     set_target_properties(SDL3_Static PROPERTIES
-        IMPORTED_LOCATION "C:/libs/sdl3-3.4.14-mingw/lib/libSDL3.a"
-        INTERFACE_INCLUDE_DIRECTORIES "C:/libs/sdl3-3.4.14-mingw/include"
+        IMPORTED_LOCATION "C:/libs/sdl3-3.4.16-mingw/lib/libSDL3.a"
+        INTERFACE_INCLUDE_DIRECTORIES "C:/libs/sdl3-3.4.16-mingw/include"
         INTERFACE_LINK_LIBRARIES "winmm;imm32;version;setupapi;dinput8"
     )
 
